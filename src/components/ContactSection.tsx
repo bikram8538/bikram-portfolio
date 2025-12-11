@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Send, Github, Linkedin, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Send, Github, Linkedin, Mail, MapPin } from "lucide-react";
 
 const socialLinks = [
   { icon: Github, label: "GitHub", href: "https://github.com/bikram8538" },
   { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Instagram, label: "Instagram", href: "#" },
   { icon: Mail, label: "Email", href: "mailto:your-email@example.com" },
 ];
 
@@ -18,118 +17,89 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
     console.log("Form submitted:", formData);
   };
 
   return (
-    <section id="contact" className="py-24 relative">
-      {/* Background Decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <section id="contact" className="py-32">
+      <div className="section-container">
         <motion.div
-          className="absolute w-[600px] h-[600px] rounded-full blur-[150px] opacity-15"
-          style={{
-            background: "linear-gradient(135deg, hsl(330 100% 65%), hsl(270 95% 65%))",
-            bottom: "-20%",
-            left: "-10%",
-          }}
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.15, 0.25, 0.15],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-          }}
-        />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-orbitron text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Get In Touch</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Have a project in mind? Let's work together to create something amazing.
+          <span className="text-sm text-muted-foreground uppercase tracking-widest mb-4 block">
+            Contact
+          </span>
+          <h2 className="section-title">Let's Work Together</h2>
+          <p className="section-subtitle mx-auto">
+            Have a project in mind? I'd love to hear about it.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <form onSubmit={handleSubmit} className="glass-card neon-border space-y-6">
-              <div className="relative">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm text-muted-foreground mb-2">
+                  Name
+                </label>
                 <input
                   type="text"
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-4 bg-muted/30 border border-border rounded-lg focus:outline-none focus:border-primary transition-colors peer placeholder-transparent"
-                  placeholder="Your Name"
+                  className="input-minimal"
+                  placeholder="Your name"
                   required
                 />
-                <label
-                  htmlFor="name"
-                  className="absolute left-4 -top-2.5 text-sm text-muted-foreground bg-card px-2 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-primary"
-                >
-                  Your Name
-                </label>
               </div>
 
-              <div className="relative">
+              <div>
+                <label htmlFor="email" className="block text-sm text-muted-foreground mb-2">
+                  Email
+                </label>
                 <input
                   type="email"
                   id="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-4 bg-muted/30 border border-border rounded-lg focus:outline-none focus:border-primary transition-colors peer placeholder-transparent"
-                  placeholder="Your Email"
+                  className="input-minimal"
+                  placeholder="your@email.com"
                   required
                 />
-                <label
-                  htmlFor="email"
-                  className="absolute left-4 -top-2.5 text-sm text-muted-foreground bg-card px-2 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-primary"
-                >
-                  Your Email
-                </label>
               </div>
 
-              <div className="relative">
+              <div>
+                <label htmlFor="message" className="block text-sm text-muted-foreground mb-2">
+                  Message
+                </label>
                 <textarea
                   id="message"
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-4 bg-muted/30 border border-border rounded-lg focus:outline-none focus:border-primary transition-colors peer placeholder-transparent resize-none"
-                  placeholder="Your Message"
+                  className="input-minimal resize-none"
+                  placeholder="Tell me about your project..."
                   required
                 />
-                <label
-                  htmlFor="message"
-                  className="absolute left-4 -top-2.5 text-sm text-muted-foreground bg-card px-2 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-primary"
-                >
-                  Your Message
-                </label>
               </div>
 
               <motion.button
                 type="submit"
-                className="w-full btn-neon flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="btn-primary w-full"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
               >
-                <Send size={20} />
+                <Send size={18} />
                 Send Message
               </motion.button>
             </form>
@@ -137,64 +107,47 @@ const ContactSection = () => {
 
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <div className="glass-card neon-border">
-              <h3 className="font-orbitron text-2xl font-bold text-foreground mb-6">
-                Let's Connect
+            <div>
+              <h3 className="text-xl font-semibold text-foreground mb-4">
+                Get in Touch
               </h3>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
-                I'm always open to discussing new projects, creative ideas, or 
-                opportunities to be part of your visions. Feel free to reach out!
+              <p className="text-muted-foreground leading-relaxed">
+                I'm always open to discussing new projects, creative ideas, 
+                or opportunities to be part of your vision.
               </p>
+            </div>
 
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 text-muted-foreground">
-                  <div className="p-3 rounded-lg bg-muted/50">
-                    <MapPin size={20} className="text-primary" />
-                  </div>
-                  <span>Kolkata, India</span>
-                </div>
-                <div className="flex items-center gap-4 text-muted-foreground">
-                  <div className="p-3 rounded-lg bg-muted/50">
-                    <Mail size={20} className="text-primary" />
-                  </div>
-                  <span>your-email@example.com</span>
-                </div>
-                <div className="flex items-center gap-4 text-muted-foreground">
-                  <div className="p-3 rounded-lg bg-muted/50">
-                    <Phone size={20} className="text-primary" />
-                  </div>
-                  <span>+91 XXXXX XXXXX</span>
-                </div>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 text-muted-foreground">
+                <MapPin size={18} />
+                <span>Kolkata, India</span>
+              </div>
+              <div className="flex items-center gap-4 text-muted-foreground">
+                <Mail size={18} />
+                <span>your-email@example.com</span>
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="glass-card neon-border">
-              <h3 className="font-orbitron text-xl font-bold text-foreground mb-6">
-                Follow Me
-              </h3>
+            <div className="pt-8 border-t border-border">
+              <p className="text-sm text-muted-foreground mb-4">Follow me</p>
               <div className="flex gap-4">
-                {socialLinks.map((social, index) => (
+                {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-4 rounded-xl bg-muted/50 border border-border hover:border-primary hover:glow-purple transition-all duration-300"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: 1.1, y: -5 }}
+                    className="p-3 rounded-full bg-secondary hover:bg-border transition-colors duration-300"
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <social.icon size={24} className="text-foreground" />
+                    <social.icon size={20} className="text-foreground" />
                   </motion.a>
                 ))}
               </div>

@@ -1,27 +1,23 @@
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="py-8 border-t border-border relative">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <motion.a
-            href="#home"
-            className="font-orbitron text-xl font-bold text-gradient"
-            whileHover={{ scale: 1.05 }}
-          >
-            BIKRAM
-          </motion.a>
-
-          <p className="text-muted-foreground text-sm flex items-center gap-2">
-            Made with <Heart size={16} className="text-accent fill-accent" /> by Bikram
+    <footer className="py-12 border-t border-border">
+      <div className="section-container">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Bikram. All rights reserved.
           </p>
-
-          <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} All rights reserved.
+          <p className="text-sm text-muted-foreground">
+            Built with care and attention to detail.
           </p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
