@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
+  { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
-  { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -25,36 +24,37 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass py-3" : "py-5"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? "bg-background/80 backdrop-blur-xl border-b border-border py-4" 
+          : "py-6"
       }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="section-container flex items-center justify-between">
         <motion.a
           href="#home"
-          className="font-orbitron text-2xl font-bold text-gradient"
-          whileHover={{ scale: 1.05 }}
+          className="text-xl font-semibold text-foreground tracking-tight"
+          whileHover={{ opacity: 0.7 }}
+          transition={{ duration: 0.2 }}
         >
-          BIKRAM
+          Bikram.
         </motion.a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {navItems.map((item, index) => (
             <motion.a
               key={item.name}
               href={item.href}
-              className="relative text-muted-foreground hover:text-foreground transition-colors font-medium"
-              initial={{ opacity: 0, y: -20 }}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -2 }}
+              transition={{ delay: 0.1 + index * 0.05, duration: 0.5 }}
             >
               {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-hero transition-all duration-300 group-hover:w-full" />
             </motion.a>
           ))}
         </div>
@@ -64,25 +64,25 @@ const Navbar = () => {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="md:hidden p-2 text-foreground"
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="md:hidden glass mt-2 mx-4 rounded-xl overflow-hidden"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          className="md:hidden bg-background border-b border-border"
         >
-          <div className="flex flex-col p-4 gap-4">
+          <div className="section-container flex flex-col py-6 gap-4">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors py-2 font-medium"
+                className="text-muted-foreground hover:text-foreground transition-colors py-2 text-sm"
               >
                 {item.name}
               </a>
